@@ -107,6 +107,8 @@ log4j = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
+    info  'org.apache.http'
+
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
@@ -119,3 +121,13 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+def accessToken = System.env.GITHUB_PERSONAL_ACCESS_TOKEN
+if(!accessToken)
+    throw new RuntimeException('Github personal access token needs to be set in GITHUB_PERSONAL_ACCESS_TOKEN')
+
+github.user = accessToken
+github.password = "x-oauth-basic"
+github.repository.owner = "jack-kerouac"
+github.repository.name = "GrailsGithubIssueCreator"
