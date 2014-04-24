@@ -53,6 +53,9 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
+        // for invoking the Github REST API
+        compile ":rest:0.8"
+
         runtime ':twitter-bootstrap:3.1.1'
 
         // plugins for the build system only
